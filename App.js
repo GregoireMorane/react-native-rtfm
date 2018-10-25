@@ -59,6 +59,7 @@ export default class App extends React.Component {
   }
   
   render() {
+    console.disableYellowBox = true;
     if(this.state.finalSearch !== null)
       //console.log("oui", this.state.finalSearch)
       return <SimilarArtists artistInput={this.state.finalSearch} />
