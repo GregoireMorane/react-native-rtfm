@@ -3,11 +3,10 @@ import { StyleSheet,
         Text, 
         View,
         Button,
-        TextInput
+        TextInput,
+        ScrollView
       } from 'react-native';
-// import { Input,
-
-//       } from 'nachos-ui'
+import { Header } from 'react-native-elements';
 import SimilarArtists from './SimilarArtists';
 
 export default class App extends React.Component {
@@ -64,25 +63,25 @@ export default class App extends React.Component {
       //console.log("oui", this.state.finalSearch)
       return <SimilarArtists artistInput={this.state.finalSearch} />
     return (
-        <View style={styles.container}>
-          <Text style={styles.textH}>RTFM</Text>
-          <TextInput
-              //icon='ios-beer'
-              style={styles.searchbar}
-              placeholder="Your artist..."
-              value={this.state.userInput}
-              onChangeText={(text) => this.searchBarDisplay(text)}
-          />
-          <Button title="Go" onPress={() => this.handleSubmit(this.state.userInput)} />
-          <Text>
-            {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <Text key={i} onPress={() => this.handleArtistClick(element.name)}>{element.name}{"\n"}</Text>
-            ))}
-          </Text>
-        </View>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.container}>
+            <Text style={styles.textH}>RTFM</Text>
+            <TextInput
+                style={styles.searchbar}
+                placeholder="Your artist..."
+                value={this.state.userInput}
+                onChangeText={(text) => this.searchBarDisplay(text)}
+            />
+            <Button title="Go !" onPress={() => this.handleSubmit(this.state.userInput)} />
+            <View>
+                {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <Text key={i} onPress={() => this.handleArtistClick(element.name)}>{element.name}{"\n"}</Text>
+                ))}
+            </View>
+          </View>
+        </ScrollView>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -99,7 +98,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 	contentContainer: {
-		paddingVertical: 20,
+    flex: 1,
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textH: {
     fontSize: 40,
