@@ -7,22 +7,11 @@ import { StyleSheet,
 	Image,
 	TouchableHighlight,
   } from 'react-native';
+import { Avatar } from 'react-native-elements';
 import FicheArtist from './FicheArtist';
 import App from './App';
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	contentContainer: {
-		paddingVertical: 20,
-	},
-});
-
-class SimilarArtists extends Component {
+export default class SimilarArtists extends Component {
 
 	constructor(props){
     	super(props);
@@ -115,30 +104,55 @@ class SimilarArtists extends Component {
 		return (
 			<ScrollView contentContainerStyle={styles.contentContainer}>
 				<View style={styles.container} >
-					<Text style={{paddingVertical: 50,}} onPress={() => this.handleClickRenderApp()}>RTFM</Text>
-					<Text onPress={() => this.handleClick()}>{this.state.artistInfo.name}</Text>
+					<Text style={styles.textH}  onPress={() => this.handleClickRenderApp()}>RTFM</Text>
+					<Text style={styles.textNameArtists} onPress={() => this.handleClick()}>{this.state.artistInfo.name}</Text>
 					<TouchableHighlight onPress={() => this.handleClick()}>
-						<Image style={{ width : 150, height : 150}} source={{ uri: this.state.artistInfo.image[2]["#text"] }} />
+						<Avatar xlarge rounded source={{ uri: this.state.artistInfo.image[2]["#text"] }} />
 					</TouchableHighlight>
 					<Text>{'\n'}</Text>
-					<Text>Similar Artists:</Text>
+					<Text style={styles.textTitle}>Similar Artists:</Text>
 					<Text>{'\n'}</Text>
-					<Text>
+					<View style={styles.container}>
 						{this.state.artists.map(
 							(element, i) =>
-								<View key={i}>
-									<Text onPress={() => this.handleClickSimilar(i)} id={i}>{element.name}</Text>
+								<View key={i} style={styles.container}>
+									<Text style={styles.textNameArtists} onPress={() => this.handleClickSimilar(i)} id={i}>{element.name}</Text>
 									<TouchableHighlight onPress={() => this.handleClickSimilar(i)}>
-										<Image style={{ width : 100, height : 100}} source={{ uri: element.image[2]["#text"] }} />
+										<Avatar xlarge rounded source={{ uri: element.image[2]["#text"] }} />
 									</TouchableHighlight>
 									<Button title="Similar artists" onPress={() => this.handleClickListSimilar(i)} id={i} />
 								</View>
 						)}
-					</Text>
+					</View>
 				</View>
 			</ScrollView>
 		);
 	}
 }
 
-export default SimilarArtists;
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	contentContainer: {
+		paddingVertical: 20,
+	},
+	textH: {
+		fontSize: 40,
+		fontWeight: 'bold',
+		paddingVertical: 30,
+	},
+	textNameArtists: {
+		paddingVertical: 20,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	textTitle:{
+		paddingVertical: 20,
+		fontSize: 30,
+		fontWeight: 'bold',
+	}
+});

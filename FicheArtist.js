@@ -11,18 +11,6 @@ import ArtistConcerts from './ArtistConcerts';
 import App from './App';
 // import Tracks from './Tracks';
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	contentContainer: {
-		paddingVertical: 20,
-	},
-});
-
 export default class FicheArtist extends Component {
 
 	constructor(props){
@@ -45,7 +33,7 @@ export default class FicheArtist extends Component {
 		return(
 			<ScrollView contentContainerStyle={styles.contentContainer}>
 				<View style={styles.container}>
-					<Text style={{paddingVertical: 20,}} onPress={this.handleClickRenderApp}>RTFM</Text>
+					<Text style={styles.textH} onPress={this.handleClickRenderApp}>RTFM</Text>
 					<ArtistBio artistName={this.props.artistName} />
 					<ArtistConcerts artistName={this.props.artistName} />
 					{/* <Tracks artistName={this.props.artistName} /> */}
@@ -54,3 +42,30 @@ export default class FicheArtist extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	contentContainer: {
+		paddingVertical: 20,
+	},
+	textH: {
+		fontSize: 40,
+		fontWeight: 'bold',
+		paddingVertical: 20,
+	},
+	textNameArtists: {
+		paddingVertical: 20,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	textTitle:{
+		paddingVertical: 20,
+		fontSize: 30,
+		fontWeight: 'bold',
+	}
+});

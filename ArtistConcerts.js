@@ -6,15 +6,6 @@ import { StyleSheet,
 	Image
   } from 'react-native';
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
-
 export default class ArtistConcerts extends Component {
 	constructor(props){
 		super(props);
@@ -51,19 +42,17 @@ export default class ArtistConcerts extends Component {
 		if(this.state.concert === null)
 			return <Text>Loading</Text>;
 		if(Object.getOwnPropertyNames(this.state.concert).length === 0){
-			return <Text>No upcoming concerts</Text>;
+			return <Text style={{paddingTop: 10,}}>No upcoming concerts</Text>;
 		}
 
 		//console.log(this.state.concert)
 		return(
 
-			<View style={styles.container}>
-				
+			<View style={{paddingTop: 10,}}>
 				{this.state.concert.event.map(
 					(element, index) =>
-							
 						<View key={index}>
-							<Text>{element.displayName.replace('at','-')}</Text>
+							<Text style={{paddingTop: 10,}} >{element.displayName.replace('at','-')}</Text>
 							<Text>{element.location.city}</Text>
 						</View>
 				)}
@@ -73,3 +62,32 @@ export default class ArtistConcerts extends Component {
 
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+	contentContainer: {
+		paddingVertical: 20,
+	},
+	textH: {
+		fontSize: 40,
+		fontWeight: 'bold',
+		paddingVertical: 30,
+	},
+	textNameArtists: {
+		paddingVertical: 20,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	textTitle:{
+		paddingVertical: 20,
+		fontSize: 30,
+		fontWeight: 'bold',
+	},
+});

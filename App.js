@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, 
         Text, 
         View,
-        ScrollView, 
-        TextInput,
-        Button
+        Button,
+        TextInput
       } from 'react-native';
+// import { Input,
+
+//       } from 'nachos-ui'
 import SimilarArtists from './SimilarArtists';
 
 export default class App extends React.Component {
@@ -58,14 +60,14 @@ export default class App extends React.Component {
   }
   
   render() {
-
     if(this.state.finalSearch !== null)
       //console.log("oui", this.state.finalSearch)
       return <SimilarArtists artistInput={this.state.finalSearch} />
     return (
         <View style={styles.container}>
-          <Text>RTFM</Text>
+          <Text style={styles.textH}>RTFM</Text>
           <TextInput
+              //icon='ios-beer'
               style={styles.searchbar}
               placeholder="Your artist..."
               value={this.state.userInput}
@@ -98,5 +100,9 @@ const styles = StyleSheet.create({
   },
 	contentContainer: {
 		paddingVertical: 20,
-	},
+  },
+  textH: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  }
 });

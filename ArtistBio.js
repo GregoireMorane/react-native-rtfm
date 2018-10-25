@@ -5,16 +5,7 @@ import { StyleSheet,
 	Button,
 	Image
   } from 'react-native';
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
-
+import { Avatar } from 'react-native-elements';
 export default class ArtistBio extends Component {
 	constructor(props){
 		super(props);
@@ -45,10 +36,39 @@ export default class ArtistBio extends Component {
 		//console.log("artistBio",this.props.artistName)
 		return(
 			<View style={styles.container}>
-				<Text style={{paddingVertical: 20,}} >{this.state.artists.name}</Text>
-				<Text variant="p" color="primary">{this.state.artists.bio.summary.replace(regex, '')}</Text>
-				<Image style={{ width : 150, height : 150}} source={{uri : this.state.artists.image[3]["#text"]}} />
+				<Text style={styles.textNameArtists} >{this.state.artists.name}</Text>
+				<Text variant="p" color="primary" style={{paddingVertical : 10,}}>{this.state.artists.bio.summary.replace(regex, '')}</Text>
+				<Avatar xlarge rounded source={{uri : this.state.artists.image[3]["#text"]}} />
 			</View>
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+	contentContainer: {
+		paddingVertical: 20,
+	},
+	textH: {
+		fontSize: 40,
+		fontWeight: 'bold',
+		paddingVertical: 30,
+	},
+	textNameArtists: {
+		paddingVertical: 20,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	textTitle:{
+		paddingVertical: 20,
+		fontSize: 30,
+		fontWeight: 'bold',
+	},
+});
