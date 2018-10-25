@@ -74,7 +74,7 @@ export default class App extends React.Component {
             />
             <Button title="Go !" onPress={() => this.handleSubmit(this.state.userInput)} />
             <View>
-                {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <Text key={i} onPress={() => this.handleArtistClick(element.name)}>{element.name}{"\n"}</Text>
+                {this.state.ShowAutocompletion && (this.state.suggestions.map((element, i) => <Text style={{paddingVertical : 5,}} key={i} onPress={() => this.handleArtistClick(element.name)}>{element.name}</Text>
                 ))}
             </View>
           </View>

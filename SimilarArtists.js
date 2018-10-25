@@ -79,16 +79,6 @@ export default class SimilarArtists extends Component {
 		// 	console.log("artistInfo", this.state.artistInfo.image) 
 		// if(this.state.artists !== null)
 		// 	console.log("artists", this.state.artists.image)
-		if(this.state.artists === null || this.state.artistInfo === null)
-			if(this.state.error === true)
-				return (
-					<View style={styles.container}>
-						<Text style={{paddingVertical: 50,}} onPress={() => this.handleClickRenderApp()}>RTFM</Text>
-						<Text>If you see this, 1) pls pick an artist, 2) your internet connection sucks !</Text>
-					</View>
-				)
-			else
-				return <Text>Loading</Text>
 		if(this.state.renderFicheArtist === true)
 			//console.log("renderFicheArtist", this.state.artistInfo.name)
 			return <FicheArtist artistName={this.state.artistInfo.name} />
@@ -100,7 +90,23 @@ export default class SimilarArtists extends Component {
 			return <SimilarArtists artistInput={this.state.artists[this.state.index].name} />
 		if(this.state.renderApp === true)
 			return <App />
-
+		if(this.state.artists === null || this.state.artistInfo === null){
+			if(this.state.error === true){
+				return (
+					<View style={styles.container}>
+						<Text style={styles.textNameArtists}>Sry can't find this artist</Text>
+						<Text style={styles.textNameArtists}  onPress={() => this.handleClickRenderApp()}>Click me to search a new artist</Text>
+					</View>
+				)
+			}
+			else{
+				return (
+					<View style={styles.container}>
+						<Text>Loading</Text>
+					</View>
+				)
+			}
+		}
 		return (
 			<ScrollView contentContainerStyle={styles.contentContainer}>
 				<View style={styles.container} >
@@ -109,9 +115,7 @@ export default class SimilarArtists extends Component {
 					<TouchableHighlight onPress={() => this.handleClick()}>
 						<Avatar xlarge rounded source={{ uri: this.state.artistInfo.image[2]["#text"] }} />
 					</TouchableHighlight>
-					<Text>{'\n'}</Text>
 					<Text style={styles.textTitle}>Similar Artists:</Text>
-					<Text>{'\n'}</Text>
 					<View style={styles.container}>
 						{this.state.artists.map(
 							(element, i) =>
